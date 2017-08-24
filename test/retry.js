@@ -81,7 +81,7 @@ describe('Retrier', function() {
         });
     });
 
-    it('should cancel a retry', function() {
+    it('should cancel a retry', function(done) {
 
 
         // Try 3 times
@@ -92,7 +92,6 @@ describe('Retrier', function() {
         function execute (callback) {
 
             i++;
-
             callback(i !== 3, i);
         }
 
@@ -109,7 +108,8 @@ describe('Retrier', function() {
 
             setTimeout(() => {
 
-                assert.equal(i, 0);
+                console.log(i);
+                assert.equal(i, 1);
                 done();
             }, 500)
         }, 500)

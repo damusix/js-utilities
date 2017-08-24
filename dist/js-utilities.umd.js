@@ -413,7 +413,7 @@ function getScrollbarWidth() {
  * @returns {Promise} - resolves desired results or rejects and passes an Error
  */
 
-function Retry(opts) {
+function retry(opts) {
 
     var self = this;
 
@@ -460,9 +460,9 @@ function Retry(opts) {
         }
     }
 
-    function evaluate(tryAgain, results) {
+    function evaluate(err, results) {
 
-        if (tryAgain) {
+        if (!!err) {
 
             // Decrement `retries`
             retries--;
@@ -482,9 +482,12 @@ function Retry(opts) {
 
                 execute(evaluate);
             }, delays.pop());
-        } else {
+        } else if (results !== undefined) {
 
             self.resolve(results);
+        } else {
+
+            self.reject(new Error('retry callback received no arguments'));
         }
     }
 
@@ -637,7 +640,7 @@ var index = {
     cookies: cookies,
     debounce: debounce,
     get_scrollbar_width: getScrollbarWidth,
-    retry: Retry,
+    retry: retry,
     scroll_lock: scroll_lock,
     session: session$1
 };

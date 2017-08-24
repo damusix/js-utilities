@@ -10,7 +10,7 @@
  */
 
 
-export default function Retry(opts) {
+export default function retry(opts) {
 
     const self = this;
 
@@ -55,9 +55,9 @@ export default function Retry(opts) {
         }
     }
 
-    function evaluate(tryAgain, results) {
+    function evaluate(err, results) {
 
-        if (tryAgain) {
+        if (!!err) {
 
             // Decrement `retries`
             retries--;
@@ -79,9 +79,13 @@ export default function Retry(opts) {
 
             }, delays.pop());
         }
-        else {
+        else if (results !== undefined) {
 
             self.resolve(results);
+        }
+        else {
+
+            self.reject(new Error('retry callback received no arguments'));
         }
     }
 
