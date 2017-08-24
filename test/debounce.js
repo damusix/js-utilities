@@ -1,7 +1,7 @@
 describe('Debounce', function() {
 
     var assert = chai.assert;
-    var debounce = utilities.debounce;
+    var debounce = Utilities.debounce;
 
     it('should return a function', function(done) {
 

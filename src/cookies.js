@@ -19,14 +19,30 @@ export function get (key) {
     return JSON.parse(decode(_val));
 }
 
+export function getAll () {
+
+    var cookies = Object.keys(Cookies());
+
+    var obj = {};
+
+    cookies.map((cookie) => {
+
+        obj[cookie] = get(cookie);
+    });
+
+    return obj;
+}
+
 export function set (key, val) {
 
     if (!key || typeof key !== 'string') {
+
         throw TypeError('Key must be a string and not undefined');
     }
 
-    // Allow false and 0
+    // Allow false, null or 0
     if (val === undefined) {
+
         throw TypeError('cannot store undefined as cookie');
     }
 
@@ -39,4 +55,30 @@ export function set (key, val) {
 export function remove (key) {
 
     return Cookies.remove(key);
+}
+
+
+export function removeAll(except) {
+
+    if (typeof except === 'string') {
+
+        except = [except];
+    }
+
+    var cookies = Object.keys(Cookies());
+
+    if (except) {
+
+        cookies.filter(c => except.indexOf(c) === -1).map((cookie) => {
+
+            remove(cookie);
+        });
+    }
+    else {
+
+        cookies.map((cookie) => {
+
+            remove(cookie);
+        });
+    }
 }

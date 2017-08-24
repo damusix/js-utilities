@@ -1,7 +1,7 @@
 describe('Base64 functions', function() {
 
     var assert = chai.assert;
-    var base64 = utilities.base64;
+    var base64 = Utilities.base64;
 
     it('should properly encode the word HELLO', function(done) {
 

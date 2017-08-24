@@ -1,3 +1,6 @@
+import babel from 'rollup-plugin-babel';
+import babelrc from 'babelrc-rollup';
+
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import pkg from './package.json';
@@ -7,11 +10,12 @@ export default [
 	{
 		entry: 'src/index.js',
 		dest: pkg.browser,
-		format: 'umd',
-		moduleName: 'jsUtils',
+		format: 'iife',
+		moduleName: 'Utilities',
 		plugins: [
-			resolve(), // so Rollup can find `ms`
-			commonjs() // so Rollup can convert `ms` to an ES module
+			// resolve(), // so Rollup can find `ms`
+			// commonjs(), // so Rollup can convert `ms` to an ES module
+			babel(babelrc())
 		]
 	},
 
@@ -22,9 +26,8 @@ export default [
 	// the `targets` option which can specify `dest` and `format`)
 	{
 		entry: 'src/index.js',
-		external: ['ms'],
+		// external: ['ms'],
 		targets: [
-			{ dest: pkg.main, format: 'cjs' },
 			{ dest: pkg.module, format: 'es' }
 		]
 	}

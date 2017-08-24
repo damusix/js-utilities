@@ -14,8 +14,8 @@ const defaults = {
 
     method: 'GET',
     crossOrigin: true,
-    contentType: 'application/json',
-    withCredentials: false
+    type: 'json',
+    headers: {}
 }
 
 function requestObject(opts) {

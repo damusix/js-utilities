@@ -1,7 +1,7 @@
 describe('Session', function() {
 
     var assert = chai.assert;
-    var session = utilities.session;
+    var session = Utilities.session;
 
     it('should return a function', function(done) {
 

@@ -1,7 +1,7 @@
 describe('Retrier', function() {
 
     var assert = chai.assert;
-    var retry = utilities.retry;
+    var retry = Utilities.retry;
 
     it('should return a promise', function(done) {
 

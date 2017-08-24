@@ -2,7 +2,7 @@ describe('Ajax functions', function() {
 
     var assert = chai.assert;
     var path = 'http://localhost:9877/req';
-    var ajax = utilities.ajax;
+    var ajax = Utilities.ajax;
 
     it('should make a GET request and accept headers object as second argument', function(done) {
 
@@ -29,6 +29,7 @@ describe('Ajax functions', function() {
 
         req.then(function(res) {
 
+
             assert.equal(res.method, 'post');
             assert.equal(res.path, '/req');
             assert.equal(typeof res.payload, 'object');
@@ -38,6 +39,7 @@ describe('Ajax functions', function() {
 
         }).fail(function (err) {
 
+            console.log(err)
             done(err);
         });
     });

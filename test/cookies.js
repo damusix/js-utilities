@@ -1,7 +1,7 @@
 describe('Cookies functions', function() {
 
     var assert = chai.assert;
-    var cookies = utilities.cookies;
+    var cookies = Utilities.cookies;
 
     it('should save value as base64 string to cookie', function(done) {
 

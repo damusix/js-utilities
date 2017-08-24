@@ -1,7 +1,7 @@
 describe('Scroll Lock', function() {
 
     var assert = chai.assert;
-    var scroll_lock = utilities.scroll_lock;
+    var scroll_lock = Utilities.scroll_lock;
 
     it('should return a function', function(done) {
 
